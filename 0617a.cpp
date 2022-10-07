@@ -1,8 +1,7 @@
 #include <iostream>
-using namespace std;
 int main() {
     int x = 0, k = 0;
-    cin >> x;
+    std::cin >> x;
     k += x / 5;
     x %= 5;
     k += x / 4;
@@ -11,6 +10,6 @@ int main() {
     x %= 3;
     k += x / 2;
     x %= 2;
-    cout << k + x;
+    std::cout << k + x;
     
 }
