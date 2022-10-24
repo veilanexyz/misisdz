@@ -5,39 +5,38 @@ int main()
     int t;
     std::cin >> t;
     for (int i = 0; i < t; i++) {
-        int n, k = 1;
+        int n, chR = 0, chB = 0, z = 1;
         std::cin >> n;
-        std::string s;
-        
-        std::cin >> s;
-        if (n == 1) {
-                k = 0;
-        }
-        if (n == 2 && (s[0] == 'W' || s[1] == 'W')) {
-            k = 0;
-        }
-        if(n>2) {
-            for (int j = 0; j < n - 2; j++) {
-                if (s[j] == s[j + 1] && s[j + 1] == s[j + 2] && s[j] != 'W' && s[j+1] != 'W' && s[j+2] != 'W') {
-                    k = 0;
+        for (int j = 0; j < n; j++) {
+            char s;
+            std::cin >> s;
+            if (s == 'W') {
+                if(chR != chB) {
+                    std::cout << "NO" << std::endl;
+                    for (int z = j + 1; z < n; z++) {
+                        std::cin >> s;
+                    }
+                    z = 0;
+                    break;
                 }
-                if (s[j + 1] == 'W' && s[j] != 'W' && s[j + 2] != 'W') {
-                    k = 0;
-                }
-            
+                chR = 0;
+                chB = 0;
+            } 
+            if (s == 'R') {
+                chR = 1;
+               
             }
-
+            if (s == 'B') {
+                chB = 1;   
+            }
         }
-        
-        if (k == 1) {
-            std::cout << "YES" << std::endl;
-        }
-        if (k == 0) {
+        if (chR != chB && z == 1) {
             std::cout << "NO" << std::endl;
+        }
+        if(chR == chB) {
+            std::cout << "YES" << std::endl;
         }
 
     }
-    
-    
     return 0;
 }
