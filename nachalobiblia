@@ -1,0 +1,46 @@
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+
+#define PI 3.14159265
+
+struct Rpol2D {
+    double r = 0.0;
+    double phi = 0.0; //phi это угол
+};
+struct Rdec2D {
+    double x = 0.0;
+    double y = 0.0;
+};
+double norm(const Rdec2D dot) {
+    double d = sqrt(pow(dot.x, 2) + pow(dot.y, 2));
+    return d;
+}
+void translate(Rdec2D dot, const Rpol2D dotfrompol) {
+    dot.x = dotfrompol.r * cos(dotfrompol.phi * PI / 180);
+    dot.y = dotfrompol.r * sin(dotfrompol.phi * PI / 180);
+    
+}
+std::ostream& operator<<(std::ostream& ostrm, const Rdec2D& dot) {
+    return ostrm << '(' << dot.x << ';' << dot.y << ')';
+}
+Rdec2D& operator+=(Rdec2D& ra, const Rdec2D& rra) {
+    ra.x += rra.x;
+    ra.y += rra.y;
+    return ra;
+}
+Rdec2D operator+(Rdec2D& ra, const Rdec2D& rra) {
+    Rdec2D res = ra;
+    res += rra;
+    return res;
+}
+Rdec2D operator-(Rdec2D& ra, const Rdec2D& rra) {
+    return {ra.x - rra.x, ra.y = rra.y};
+}
+int main()
+{
+    Rdec2D dot{0.5, 5.0};
+    Rpol2D dotfrompol{1.3, -2.0};
+    translate(dot, dotfrompol);
+    std::cout << dot<<std::endl;
+}
