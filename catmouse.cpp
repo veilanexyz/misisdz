@@ -27,9 +27,10 @@ int main() {
 	for (double t = 0; t < 10; t++) {
 		Rdec2D vec_cat_to_mouse = mouse - cat;
 		v_c = edi(vec_cat_to_mouse) * norm(v_c);
-		cat = cat + v_m * t;
-		mouse = mouse + v_m * t;
-		file << n << "	" << t << "    " << cat.x << "	" << cat.y << "    " << v_c.x << "	" << v_c.y << "    "<<"\n";
+		cat += v_c * t;
+		mouse +=  v_m * t;
+		file << n << "	" << t << "    " << cat.x << "	" << cat.y << "    " << cat.x/t << "	" << cat.y/t << "    "<<"\n";
+		std::cout << v_c<<std::endl;
 		n += 1;
 	}
 }
